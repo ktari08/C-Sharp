@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @model Idea
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bright Ideas</title>
+</head>
+<body>
+    <h3>@Model.User.alias says: </h3>
+    <div>@Model.TheIdea</div>
+    <br>
+    <p>People who liked this post: </p>
+    <table>
+        <tr style="padding: 5px; border: 1px solid black">
+            <th style="padding: 5px; border: 1px solid black">Alias</th>
+            <th style="padding: 5px; border: 1px solid black">Name</th>
+        </tr>
+        @foreach(var likers in @Model.likeThis)
+        {
+            <tr>
+                <td style="padding: 5px; border: 1px solid black;"><a href="/viewuser/@likers.UserId">@likers.User.alias</a></td>
+                <td style="padding: 5px; border: 1px solid black;">@likers.User.name</td>
+            </tr>
+        }
+    </ul>
+</body>
+</html>

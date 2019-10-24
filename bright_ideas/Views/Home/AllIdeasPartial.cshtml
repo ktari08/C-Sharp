@@ -1,0 +1,24 @@
+@foreach(Idea idea in @ViewBag.AllIdeas)
+{
+    <div style="border: 1px solid black; margin-bottom: 7px; padding: 5px">
+        <div><a href="/viewuser/@idea.UserId">@idea.User.alias</a> says:</div>
+        <div>@idea.TheIdea</div>
+        @if (@ViewBag.UserId == @idea.UserId)
+        {
+            <a href="delete/@idea.IdeaId">Delete | </a>
+        }
+        else
+        {
+            if(@idea.likeThis.Any(a=>a.UserId == @ViewBag.UserId))
+            {
+                <a href="unlike/@idea.IdeaId">Unlike | </a>
+            }
+            else
+            {
+                <a href="like/@idea.IdeaId">Like | </a>
+            }
+        }
+        <a href="/viewidea/@idea.IdeaId">@idea.likeThis.Count likes</a>
+    </div>
+}
+

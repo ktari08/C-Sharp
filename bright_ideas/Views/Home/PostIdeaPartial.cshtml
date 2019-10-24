@@ -1,0 +1,9 @@
+@model Idea
+
+<form asp-controller="Home" asp-action="CreateIdea" method="post">
+    <input type="text" asp-for="TheIdea" placeholder="Post something witty here...">
+    <br>
+    <span asp-validation-for="TheIdea" style="color: red;"></span>
+    <br>
+    <input type="submit" value="Add Idea!">
+</form>

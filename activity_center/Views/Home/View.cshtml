@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @model TheActivity
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojo Activity Center</title>
+</head>
+<body>
+    <h1>@Model.title</h1>
+    <p>Event Coordinator: @Model.User.first_name</p>
+    <p>Description: @Model.description</p>
+    <p>Participants: </p>
+    <ul>
+        @foreach(var attendant in @Model.Attending){
+            <li>@attendant.User.first_name @attendant.User.last_name</li>
+        }
+    </ul>
+</body>
+</html>

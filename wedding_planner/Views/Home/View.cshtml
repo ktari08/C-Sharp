@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @model Wedding
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wedding Planner</title>
+</head>
+<body>
+    <h1>@Model.groom and @Model.bride Wedding</h1>
+    <p>Date: @Model.WeddingDate</p>
+    <p>Guests: </p>
+    <ul>
+            @foreach(var attendant in @Model.Attending){
+                <li>@attendant.User.first_name @attendant.User.last_name</li>
+            }
+    </ul>
+</body>
+</html>

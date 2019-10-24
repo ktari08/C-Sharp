@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojo Activity Center</title>
+</head>
+<body>
+    <h1>Dojo Activity Center</h1>
+    <a href="logout">Logout</a> | <a href="/new">Add New Activity</a>
+    <table>
+        <tr style="border: 1px solid black">
+            <th style="padding: 5px; border: 1px solid black;">Activity</th>
+            <th style="padding: 5px; border: 1px solid black;">Date and Time</th>
+            <th style="padding: 5px; border: 1px solid black;">Duration</th>
+            <th style="padding: 5px; border: 1px solid black;">Event Coordinator</th>
+            <th style="padding: 5px; border: 1px solid black;">Number of Participants</th>
+            <th style="padding: 5px; border: 1px solid black;">Actions</th>
+        </tr>
+            @foreach(TheActivity activity in @ViewBag.AllActivities)
+            {
+                <tr>
+                    <td style="padding: 5px; border: 1px solid black;">
+                        <a href="/viewactivity/@activity.TheActivityId">
+                            @activity.title
+                        </a>
+
+                    </td>
+                    <td style="padding: 5px; border: 1px solid black;">@activity.ActivityDate at @activity.time</td>
+                    <td style="padding: 5px; border: 1px solid black;">@activity.duration @activity.duration_unit</td>
+                    <td style="padding: 5px; border: 1px solid black;">@activity.User.first_name</td>
+                    <td style="padding: 5px; border: 1px solid black;">@activity.Attending.Count</td>
+                    @if (@ViewBag.UserId == @activity.UserId)
+                    {
+                        <td style="padding: 5px; border: 1px solid black;"><a href="delete/@activity.TheActivityId">Delete</a></td>
+                    }
+                    else
+                    {
+                        if(@activity.Attending.Any(a => a.UserId == @ViewBag.UserId))
+                        {
+                            <td style="padding: 5px; border: 1px solid black;"><a href="leave/@activity.TheActivityId">Leave</a></td>
+                        }
+                        else
+                        {
+                            <td style="padding: 5px; border: 1px solid black;"><a href="join/@activity.TheActivityId">Join</a></td>
+                        }
+                    }
+                </tr>
+            }
+    </table>
+</body>
+</html>

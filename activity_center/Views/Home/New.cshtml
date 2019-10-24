@@ -1,0 +1,52 @@
+@model TheActivity
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojo Activity Center</title>
+</head>
+<body>
+    <h1>Create an Activity</h1>
+    <form asp-controller="Home" asp-action="CreateActivity" method="post">
+        <!-- <input type="hidden" asp-for="UserId" value="@ViewBag.UserId"> -->
+        <label asp-for="title">Title</label>
+        <input type="text" asp-for="title">
+        <br>
+        <span asp-validation-for="title" style="color: red;"></span>
+        <br>
+        <label asp-for="ActivityDate">Date</label>
+        <input type="date" asp-for="ActivityDate">
+        <br>
+        <span asp-validation-for="ActivityDate" style="color: red;"></span>
+        <br>
+        <label asp-for="time">Time</label>
+        <input type="text" asp-for="time">
+        <br>
+        <span asp-validation-for="time" style="color: red;"></span>
+        <br>
+        <label asp-for="duration">Duration</label>
+        <input type="text" asp-for="duration">
+        <br>
+        <span asp-validation-for="duration" style="color: red;"></span>
+        <br>
+        <label asp-for="duration_unit">Unit</label>
+        <select asp-for="duration_unit">
+            <option value="Minute(s)">Minute(s)</option>
+            <option value="Hour(s)">Hour(s)</option>
+            <option value="Day(s)">Day(s)</option>
+        </select>
+        <br>
+        <span asp-validation-for="duration_unit" style="color: red;"></span>
+        <br>
+        <label asp-for="description">Description</label>
+        <input type="text" asp-for="description">
+        <br>
+        <span asp-validation-for="description" style="color: red;"></span>
+        <br>
+        <input type="submit" value="Create Activity">
+    </form>
+</body>
+</html>

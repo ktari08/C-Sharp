@@ -1,0 +1,15 @@
+@model Login
+
+<form asp-controller="Home" asp-action="Login" method="post" style=>
+        <label asp-for="loginEmail">Email: </label>
+        <input type="email" asp-for="loginEmail">
+        <br>
+        <span asp-validation-for="loginEmail" style="color: red;">@ViewBag.Error</span>
+        <br>
+        <label asp-for="loginPassword">Password: </label>
+        <input type="password" asp-for="loginPassword">
+        <br>
+        <span asp-validation-for="loginPassword" style="color: red;">@ViewBag.Error</span>
+        <br>
+        <input type="submit" value="Login">
+    </form>

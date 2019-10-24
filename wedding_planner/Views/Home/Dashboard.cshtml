@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wedding Planner</title>
+</head>
+<body>
+    <h1>Welcome to the Wedding Planner</h1>
+    <a href="logout">Logout</a> | <a href="/new">New Wedding</a>
+    <table>
+        <tr style="border: 1px solid black">
+            <th style="padding: 5px; border: 1px solid black;">Wedding</th>
+            <th style="padding: 5px; border: 1px solid black;">Date</th>
+            <th style="padding: 5px; border: 1px solid black;">Guests</th>
+            <th style="padding: 5px; border: 1px solid black;">Action</th>
+        </tr
+            @foreach(Wedding wedding in @ViewBag.AllWeddings)
+            {
+                <tr>
+                    <td style="padding: 5px; border: 1px solid black;">
+                        <a href="/viewwedding/@wedding.WeddingId">
+                            @wedding.groom & @wedding.bride
+                            </a>
+                    </td>
+                    <td style="padding: 5px; border: 1px solid black;">@wedding.WeddingDate</td>
+                    <td style="padding: 5px; border: 1px solid black;">@wedding.Attending.Count</td>
+                    @if(@ViewBag.UserId == @wedding.UserId)
+                    {
+                        <td style="padding: 5px; border: 1px solid black;"><a href="delete/@wedding.WeddingId">Delete</a></td>
+                    }
+                    else
+                    {
+                            if(@wedding.Attending.Any(a => a.UserId == @ViewBag.UserId))
+                            {
+                                <td style="padding: 5px; border: 1px solid black;"><a href="unrsvp/@wedding.WeddingId">Un-RSVP</a></td>
+                            }
+                            else
+                            {
+                                <td style="padding: 5px; border: 1px solid black;"><a href="rsvp/@wedding.WeddingId">RSVP</a></td>
+                            }
+                    }
+                </tr>
+            }
+    </table>
+</body>
+</html>
